@@ -1,37 +1,59 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import "./Navbar.css";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <nav className="bg-gray-900 fixed w-full z-20 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
-        <h1 className="text-white font-bold text-2xl">MyPortfolio</h1>
+  const navItems = [
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
+    { label: "Contact", href: "#contact" },
+  ];
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8 text-gray-300">
-          <Link to="/" className="hover:text-blue-400">Home</Link>
-          <Link to="/about" className="hover:text-blue-400">About</Link>
-          <Link to="/projects" className="hover:text-blue-400">Projects</Link>
-          <Link to="/contact" className="hover:text-blue-400">Contact</Link>
+  return (
+    <nav className="navbar">
+      <div className="nav-container">
+
+        {/* Logo */}
+        <div className="nav-logo">
+          Shivaraj N
         </div>
 
-        {/* Mobile Menu */}
-        <button
-          className="md:hidden text-gray-300"
+        {/* Desktop Menu */}
+        <div className="nav-menu">
+          {navItems.map((item, index) => (
+            <a key={index} href={item.href} className="nav-link">
+              {item.label}
+            </a>
+          ))}
+        </div>
+
+        {/* Mobile Toggle */}
+        <div
+          className="mobile-toggle"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? "✖" : "☰"}
-        </button>
+          {isOpen ? <CloseOutlined /> : <MenuOutlined />}
+        </div>
       </div>
 
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-gray-800 px-4 py-3 space-y-2 text-gray-300">
-          <Link to="/" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link to="/about" onClick={() => setIsOpen(false)}>About</Link>
-          <Link to="/projects" onClick={() => setIsOpen(false)}>Projects</Link>
-          <Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
+        <div className="mobile-menu">
+          {navItems.map((item, index) => (
+            <a
+              key={index}
+              href={item.href}
+              className="nav-link"
+              onClick={() => setIsOpen(false)}
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
       )}
     </nav>

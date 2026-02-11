@@ -1,79 +1,94 @@
-import { Row, Col, Card, Typography } from "antd";
-
-const { Title, Paragraph } = Typography;
+import "./Projects.css";
 
 export default function Projects() {
+  const projects = [
+    {
+      name: "Transaction Management Web Application",
+      tech: ["React.js", "TypeScript", "Redux", "REST APIs", "MySQL"],
+      description:
+        "Enterprise web application for managing complex transaction workflows, approvals, and secure operations.",
+      points: [
+        "Developed complex workflows for transactions, requests, and approvals.",
+        "Integrated frontend with backend services for real-time data handling.",
+        "Implemented secure role-based access control (RBAC).",
+        "Optimized API interactions and improved UI performance.",
+      ],
+    },
+    {
+      name: "Role-Based Operations Dashboard",
+      tech: ["React.js", "Redux", "Ant Design"],
+      description:
+        "Administrative dashboard for managing users, roles, permissions, and operational data.",
+      points: [
+        "Built dynamic navigation based on user roles.",
+        "Implemented secure screen-level access control.",
+        "Integrated reporting modules and data visualization components.",
+        "Designed scalable dashboard architecture.",
+      ],
+    },
+    {
+      name: "Mobile Payment & Collection Application",
+      tech: ["React Native", "REST APIs"],
+      description:
+        "Mobile application for onboarding users and processing payment transactions.",
+      points: [
+        "Developed mobile screens for onboarding and transaction processing.",
+        "Ensured smooth API integration and data synchronization.",
+        "Optimized UI for performance and usability on mobile devices.",
+      ],
+    },
+    {
+      name: "Real-Time Data Monitoring Dashboard",
+      tech: ["React.js", "Firebase", "AmCharts 5"],
+      description:
+        "Interactive dashboard for visualizing real-time operational data.",
+      points: [
+        "Built interactive charts using AmCharts 5.",
+        "Integrated Firebase for live updates and notifications.",
+        "Designed scalable UI architecture for data-intensive screens.",
+      ],
+    },
+  ];
+
   return (
-    <section
-      id="projects"
-      style={{
-        padding: "80px 20px",
-        background: "linear-gradient(135deg, #e6f7ff 0%, #f9f0ff 100%)", // Light blue → lavender gradient
-        color: "#222",
-      }}
-    >
-      <div style={{ textAlign: "center", marginBottom: "40px" }}>
-        <Title level={2} style={{ color: "#722ed1" }}> {/* Purple title */}
-          🚀 Projects
-        </Title>
-        <Paragraph style={{ color: "#434343", fontSize: "16px" }}>
-          Some of the applications I’ve worked on.
-        </Paragraph>
+    <section id="projects" className="projects-section">
+      <div className="projects-container">
+
+        <h2 className="projects-title">Projects</h2>
+
+        <div className="projects-grid">
+          {projects.map((project, index) => (
+            <div key={index} className="project-card">
+
+              <div className="project-title">
+                {project.name}
+              </div>
+
+              <div className="project-description">
+                {project.description}
+              </div>
+
+              <div className="tech-stack">
+                {project.tech.map((tech, i) => (
+                  <span key={i} className="tech-badge">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <ul className="project-points">
+                {project.points.map((point, i) => (
+                  <li key={i} className="project-point">
+                    {point}
+                  </li>
+                ))}
+              </ul>
+
+            </div>
+          ))}
+        </div>
+
       </div>
-
-      <Row gutter={[24, 24]} justify="center">
-        {/* Project 1 */}
-        <Col xs={24} md={12}>
-          <Card
-            title="🔹 All-in-One Billing Software"
-            bordered={false}
-            style={{
-              background: "#ffffff", // White card
-              color: "#222222",
-              borderRadius: "12px",
-              minHeight: "220px",
-              boxShadow: "0 6px 16px rgba(114, 46, 209, 0.15)", // Soft purple shadow
-            }}
-            headStyle={{ color: "#722ed1" }} // Purple heading
-          >
-            <Paragraph>
-              A desktop billing & invoicing software built with{" "}
-              <b>VB.NET + SQL Server</b>, designed for multiple industries.
-            </Paragraph>
-            <ul style={{ color: "#595959", paddingLeft: "20px" }}>
-              <li>Supports inventory, discounts, and reporting</li>
-              <li>Customer & supplier management</li>
-              <li>Invoice & receipt generation</li>
-            </ul>
-          </Card>
-        </Col>
-
-        {/* Project 2 */}
-        <Col xs={24} md={12}>
-          <Card
-            title="🔹 B-Trac Billing Software"
-            bordered={false}
-            style={{
-              background: "#ffffff",
-              color: "#222222",
-              borderRadius: "12px",
-              minHeight: "220px",
-              boxShadow: "0 6px 16px rgba(24, 144, 255, 0.15)", // Soft blue shadow
-            }}
-            headStyle={{ color: "#722ed1" }} // Blue heading
-          >
-            <Paragraph>
-              A billing system developed using{" "}
-              <b>PHP, Java, Apache Server, and SQL</b>.
-            </Paragraph>
-            <ul style={{ color: "#595959", paddingLeft: "20px" }}>
-              <li>Multi-user billing system</li>
-              <li>Role-based access control</li>
-              <li>Real-time reporting</li>
-            </ul>
-          </Card>
-        </Col>
-      </Row>
     </section>
   );
 }
