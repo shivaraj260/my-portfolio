@@ -20,7 +20,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <div className="nav-logo">
-          Shivaraj N
+          Shivaraj   
         </div>
 
         {/* Desktop Menu */}
